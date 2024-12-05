@@ -4,12 +4,12 @@ import org.example.Converter.CurrencyConverter;
 
 import java.util.Scanner;
 
-import static org.example.UI.ClearScreen.centralizarTexto;
 
 public class Console {
 
+    static CurrencyConverter currencyConverter = new CurrencyConverter();
 
-    public static void start() throws InterruptedException {
+    public static void start() throws NullPointerException, InterruptedException {
         Scanner leitura = new Scanner(System.in);
         System.out.println("\n*******************************\n");
         System.out.println("Bem vindo ao super convertor de moedas");
@@ -27,154 +27,26 @@ public class Console {
                 Escolha uma opção:""");
         numero = leitura.nextInt();
 
-        while (numero != 0) {
-            if (numero == 1) {
-                try {
-                    Double currency = CurrencyConverter.currency("BRL", "USD");
-                    System.out.println("Digite o valor que quer converter");
-                    leitura.nextLine();
-                    String moedaString = leitura.nextLine().replace(",", ".");
-
-                    Double moeda = Double.parseDouble(moedaString);
-
-                    String texto = String.format("O valor de R$ %.2f convertido é: %.2f", moeda, (moeda * currency));
-
-                    System.out.println();
-                    centralizarTexto("*****************");
-                    centralizarTexto(texto);
-                    centralizarTexto("Enter para retornar");
-                    centralizarTexto("*****************");
-                    leitura.nextLine();
-                    ClearScreen.clearScreen();
-                    Console.start();
-                } catch (NumberFormatException e) {
-                    System.out.println("Erro: Valor digitado é inválido");
-                }
-            }
-            if (numero == 2) {
-                System.out.println("A conversão de BRL para ARS é: ");
-                try {
-                    Double currency = CurrencyConverter.currency("BRL", "ARS");
-                    System.out.println("Digite o valor que quer converter:");
-                    leitura.nextLine();
-                    String moedaString = leitura.nextLine().replace(",", ".");
-
-                    Double moeda = Double.parseDouble(moedaString);
-
-                    String texto = String.format("O valor de %.2f convertido é: %.2f", moeda, (moeda * currency));
-
-                    System.out.println();
-                    centralizarTexto("****************");
-                    centralizarTexto(texto);
-                    centralizarTexto("Enter para retornar");
-                    centralizarTexto("****************");
-                    leitura.nextLine();
-                    ClearScreen.clearScreen();
-                    Console.start();
-                } catch (NumberFormatException e) {
-                    System.out.println("Erro: Valor digitado é inválido");
-                }
-            }
-            if (numero == 3) {
-                System.out.println("A conversão de BRL para EUR");
-                try {
-                    Double currency = CurrencyConverter.currency("BRL", "EUR");
-                    System.out.println("Digite o valor que quer converter");
-                    leitura.nextLine();
-                    String moedaString = leitura.nextLine().replace(",", ".");
-
-                    Double moeda = Double.parseDouble(moedaString);
-
-                    String texto = String.format("O valor de %.2f convertido é %.2f", moeda, (moeda * currency));
-
-                    System.out.println();
-                    centralizarTexto("****************");
-                    centralizarTexto(texto);
-                    centralizarTexto("Enter para retornar");
-                    centralizarTexto("****************");
-                    leitura.nextLine();
-                    ClearScreen.clearScreen();
-                    Console.start();
-                } catch (NumberFormatException e) {
-                    System.out.println("Erro: Valor digitado é inválido");
-                }
-            }
-            if (numero == 4) {
-                System.out.println("A conversão de USD para BRL");
-                try {
-                    Double currency = CurrencyConverter.currency("USD", "BRL");
-                    System.out.println("Digite o valor que quer converter: ");
-                    leitura.nextLine();
-                    String moedaString = leitura.nextLine().replace(",", ".");
-
-                    Double moeda = Double.parseDouble(moedaString);
-
-                    String texto = String.format("O valor de %.2f convertido é %.2f", moeda, (moeda * currency));
-
-                    System.out.println();
-                    centralizarTexto("****************");
-                    centralizarTexto(texto);
-                    centralizarTexto("Enter para retornar");
-                    centralizarTexto("****************");
-                    leitura.nextLine();
-                    ClearScreen.clearScreen();
-                    Console.start();
-                } catch (NumberFormatException e) {
-                    System.out.println("Erro: Valor digitado é inválido");
-                }
-            }
-            if (numero == 5) {
-                System.out.println("A conversão de ARS para BRL");
-                try {
-                    Double currency = CurrencyConverter.currency("ARS", "BRL");
-                    System.out.println("Digite o valor que quer converter: ");
-                    leitura.nextLine();
-                    String moedaString = leitura.nextLine().replace(",", ".");
-
-                    Double moeda = Double.parseDouble(moedaString);
-
-                    String texto = String.format("O valor de %.2f convertido é %.2f", moeda, (moeda * currency));
-
-                    System.out.println();
-                    centralizarTexto("****************");
-                    centralizarTexto(texto);
-                    centralizarTexto("Enter para retornar");
-                    centralizarTexto("****************");
-                    leitura.nextLine();
-                    ClearScreen.clearScreen();
-                    Console.start();
-                } catch (NumberFormatException e) {
-                    System.out.println("Erro: Valor digitado é inválido");
-                }
-            }
-            if (numero == 6) {
-                System.out.println("A conversão de EUR para BRL");
-                try {
-                    Double currency = CurrencyConverter.currency("EUR", "BRL");
-                    System.out.println("Digite o valor que quer converter: ");
-                    leitura.nextLine();
-                    String moedaString = leitura.nextLine().replace(",", ".");
-
-                    Double moeda = Double.parseDouble(moedaString);
-
-                    String texto = String.format("O valor de %.2f convertido é %.2f", moeda, (moeda * currency));
-
-                    System.out.println();
-                    centralizarTexto("****************");
-                    centralizarTexto(texto);
-                    centralizarTexto("Enter para retornar");
-                    centralizarTexto("****************");
-                    leitura.nextLine();
-                    ClearScreen.clearScreen();
-                    Console.start();
-                } catch (NumberFormatException e) {
-                    System.out.println("Erro: Valor digitado é inválido");
-                }
-            }
-            if (numero == 7) {
-                ConsoleOutrasOpcoes.exibirMenuOutrasOpcoes();
-            }
-
+        switch (numero) {
+            case 0: System.out.println("Programa finalizando");
+                break;
+            case 1: currencyConverter.coinConverse("BRL", "USD", "Real para Dólar");
+                break;
+            case 2: currencyConverter.coinConverse("BRL", "ARS", "Real para peso Argentino");
+                break;
+            case 3: currencyConverter.coinConverse("BRL", "EUR", "Real para Euro");
+                break;
+            case 4: currencyConverter.coinConverse("USD", "BRL", "Dólar para Real");
+                break;
+            case 5: currencyConverter.coinConverse("ARS", "BRL", "Peso Argentino para Real");
+                break;
+            case 6: currencyConverter.coinConverse("EUR", "BRL", "Euro para Real");
+                break;
+            case 7: ConsoleOutrasOpcoes.exibirMenuOutrasOpcoes();
+                break;
+            default:
+                System.out.println("Opção inválida. Tente novamente");
         }
+
     }
 }

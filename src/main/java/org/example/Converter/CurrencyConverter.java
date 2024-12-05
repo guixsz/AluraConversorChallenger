@@ -1,6 +1,8 @@
 package org.example.Converter;
 
 import com.google.gson.Gson;
+import org.example.UI.ClearScreen;
+import org.example.UI.Console;
 import org.example.record.MoedaFormatada;
 
 import java.io.IOException;
@@ -8,8 +10,15 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Scanner;
+
+import static org.example.UI.ClearScreen.centralizarTexto;
 
 public class CurrencyConverter {
+    Scanner leitura = new Scanner(System.in);
+
+    public CurrencyConverter() {
+    }
 
     public static Double currency(String moedaOrigem, String moedaDestino) {
         try {
@@ -41,6 +50,32 @@ public class CurrencyConverter {
             System.err.println("Erro inesperado: " + e.getMessage());
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void coinConverse(String moedaOrigem, String moedaDestino, String descricao) {
+        System.out.printf("A conversão de %s:\n", descricao);
+
+        try {
+            Double currency = currency(moedaOrigem, moedaDestino);
+            System.out.println("Digite o valor que quer converter: ");
+            String coin = leitura.nextLine();
+
+            String moedaString = coin.replace(",", ".");
+            Double moeda = Double.parseDouble(moedaString);
+
+            String texto = String.format("O valor de %.2f convertido é %.2f", moeda, (moeda * currency));
+
+            System.out.println();
+            centralizarTexto("****************");
+            centralizarTexto(texto);
+            centralizarTexto("Enter para retornar");
+            centralizarTexto("****************");
+            leitura.nextLine();
+            ClearScreen.clearScreen();
+            Console.start();
+        } catch (NumberFormatException | InterruptedException e) {
+            System.out.println("Erro: valor digitado é inválido");;
         }
     }
 }
