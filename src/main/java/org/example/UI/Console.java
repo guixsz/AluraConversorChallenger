@@ -9,7 +9,7 @@ import static org.example.UI.ClearScreen.centralizarTexto;
 public class Console {
 
 
-    public static void start() {
+    public static void start() throws InterruptedException {
         Scanner leitura = new Scanner(System.in);
         System.out.println("\n*******************************\n");
         System.out.println("Bem vindo ao super convertor de moedas");
@@ -170,6 +170,9 @@ public class Console {
                 } catch (NumberFormatException e) {
                     System.out.println("Erro: Valor digitado é inválido");
                 }
+            }
+            if (numero == 7) {
+                ConsoleOutrasOpcoes.exibirMenuOutrasOpcoes();
             }
 
         }
