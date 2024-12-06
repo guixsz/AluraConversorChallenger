@@ -12,5 +12,5 @@ Esse conversor é um challenger do curso da Alura Java para Backends com parceri
 1. Certifique-se de ter o Java instalado na máquina
 2. Clone este repositório com o comando 'git clone' no terminal e em seguida o link do repositório
 3. Abra o arquivo em sua IDE de preferência
-4. Execute a aplaicação
+4. Execute a aplicação na classe main  
 
